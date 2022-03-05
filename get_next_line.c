@@ -6,17 +6,17 @@
 /*   By: hyna <hyns@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 01:50:17 by hyna              #+#    #+#             */
-/*   Updated: 2022/03/03 06:37:05 by hyna             ###   ########.fr       */
+/*   Updated: 2022/03/05 17:16:04 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char *mv_backup(char *backup)
+static char	*mv_backup(char	*backup)
 {
-	char *result;
-	int i;
-	int j;
+	char	*result;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (backup[i] && (backup[i] != '\n'))
@@ -38,15 +38,14 @@ static char *mv_backup(char *backup)
 	return (result);
 }
 
-static char *make_result(char *backup)
+static char	*make_result(char	*backup)
 {
-	char *result;
-	int i;
-	int j;
+	char	*result;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
-
 	while (backup[i] && (backup[i] != '\n'))
 		i++;
 	if (!(backup[i]))
@@ -63,12 +62,12 @@ static char *make_result(char *backup)
 	return (result);
 }
 
-static char *make_backup(char *s1, char *s2)
+static char	*make_backup(char	*s1, char	*s2)
 {
-	char *result;
-	size_t s1_len;
-	size_t s2_len;
-	size_t i;
+	char	*result;
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
 
 	if (s1)
 		s1_len = ft_strlen(s1);
@@ -90,10 +89,10 @@ static char *make_backup(char *s1, char *s2)
 	return (result);
 }
 
-static char *read_files(int fd, char *backup)
+static char	*read_files(int fd, char	*backup)
 {
-	ssize_t read_len;
-	char buf[BUFFER_SIZE + 1];
+	ssize_t	read_len;
+	char	buf[BUFFER_SIZE + 1];
 
 	buf[0] = 0;
 	buf[BUFFER_SIZE] = 0;
@@ -114,11 +113,11 @@ static char *read_files(int fd, char *backup)
 	return (backup);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *backup;
-	char *result;
-	char *tmp;
+	static char	*backup;
+	char		*result;
+	char		*tmp;
 
 	if ((fd < 0) || (BUFFER_SIZE <= 0))
 		return (NULL);
