@@ -74,6 +74,7 @@ static char *make_backup(char *s1, char *s2)
 		s1_len = ft_strlen(s1);
 	else
 		s1_len = 0;
+	s2_len = ft_strlen(s2);
 	result = malloc(s1_len + s2_len + 1);
 	if (!result)
 		return (0);
@@ -122,8 +123,13 @@ char *get_next_line(int fd)
 	if ((fd < 0) || (BUFFER_SIZE <= 0))
 		return (NULL);
 	tmp = read_files(fd, backup);
-	if (!tmp || !tmp[0])
+	if (!tmp)
 		return (NULL);
+	else if (!tmp[0])
+	{
+		free(tmp);
+		return (NULL);
+	}
 	result = make_result(tmp);
 	if (!result)
 		return (NULL);
