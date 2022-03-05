@@ -86,6 +86,7 @@ static char *make_backup(char *s1, char *s2)
 	i = 0;
 	while (i < s2_len)
 		result[s1_len++] = s2[i++];
+	result[s1_len] = 0;
 	free(s1);
 	return (result);
 }
