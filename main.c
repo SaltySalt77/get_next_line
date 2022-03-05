@@ -17,7 +17,7 @@ int main(void)
 		print = get_next_line(fd);
 		if (!print)
 			break;
-		printf("return : %s----------------------- \n", print);
+		printf("%d : %s", print);
 		free(print);
 		n++;
 	}
