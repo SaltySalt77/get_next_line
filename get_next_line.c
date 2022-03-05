@@ -39,7 +39,7 @@ static char *mv_backup(char *backup)
 	return (result);
 }
 
-static char *make_result(char	*backup)
+static char *make_result(char *backup)
 {
 	char *result;
 	int i;
@@ -58,6 +58,7 @@ static char *make_result(char	*backup)
 	while (j <= i)
 	{
 		result[j] = backup[j];
+		printf("result[%d] : %c / backup[%d] : %c\n", j, result[j], j, backup[j]);
 		j++;
 	}
 	result[j] = 0;
@@ -121,8 +122,8 @@ static char *read_files(int fd, char *backup)
 char *get_next_line(int fd)
 {
 	static char *backup;
-	char		*result;
-	char		*tmp;
+	char *result;
+	char *tmp;
 
 	if ((fd < 0) || (BUFFER_SIZE <= 0))
 		return (NULL);
