@@ -6,7 +6,7 @@ int main(void)
 {
 	int fd;
 	int n;
-	char	*print;
+	char *print;
 
 	n = 0;
 	fd = open("test1.txt", O_RDONLY);
@@ -15,9 +15,10 @@ int main(void)
 	while (n < 10)
 	{
 		print = get_next_line(fd);
-		if(!print)
-			break ;
+		if (!print)
+			break;
 		printf("return : %s----------------------- \n", print);
+		free(print);
 		n++;
 	}
 	close(fd);

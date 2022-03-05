@@ -75,7 +75,7 @@ static char *make_backup(char *s1, char *s2)
 	if (s1)
 		s1_len = ft_strlen(s1);
 	else
-		return (s2);
+		s1_len = 0;
 	s2_len = ft_strlen(s2);
 	result = malloc(s1_len + s2_len + 1);
 	if (!result)
@@ -87,7 +87,8 @@ static char *make_backup(char *s1, char *s2)
 	while (i < s2_len)
 		result[s1_len++] = s2[i++];
 	result[s1_len] = 0;
-	free(s1);
+	if (s1)
+		free(s1);
 	return (result);
 }
 
