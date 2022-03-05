@@ -86,6 +86,7 @@ static char *make_backup(char *s1, char *s2)
 	i = 0;
 	while (i < s2_len)
 		result[s1_len++] = s2[i++];
+	free(s1);
 	return (result);
 }
 
@@ -93,7 +94,6 @@ static char *read_files(int fd, char *backup)
 {
 	ssize_t read_len;
 	char buf[BUFFER_SIZE + 1];
-	char *tmp;
 
 	buf[BUFFER_SIZE] = 0;
 	while (!ft_strchr(backup, '\n'))
@@ -109,11 +109,7 @@ static char *read_files(int fd, char *backup)
 		}
 		buf[read_len] = 0;
 		printf("buf : %s\n--------\n", buf);
-		tmp = make_backup(backup, buf);
-		if (!tmp)
-			return (NULL);
-		free(backup);
-		backup = tmp;
+		backup = make_backup(backup, buf);
 		printf("backup : %s\n-------\n", backup);
 	}
 	return (backup);
