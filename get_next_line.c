@@ -6,13 +6,13 @@
 /*   By: hyna <hyns@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 01:50:17 by hyna              #+#    #+#             */
-/*   Updated: 2022/03/05 17:16:04 by hyna             ###   ########.fr       */
+/*   Updated: 2022/03/11 18:30:58 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*mv_backup(char	*backup)
+static char	*mv_backup(char	*backup, int	*check)
 {
 	char	*result;
 	int		i;
@@ -28,7 +28,10 @@ static char	*mv_backup(char	*backup)
 		i++;
 	result = malloc(i - j);
 	if (!result)
+	{
+		*check = 0;
 		return (NULL);
+	}
 	i = 0;
 	j++;
 	while (backup[j])
@@ -118,20 +121,21 @@ char	*get_next_line(int fd)
 	static char	*backup;
 	char		*result;
 	char		*tmp;
+	int			check;
 
+	check = 1;
 	if ((fd < 0) || (BUFFER_SIZE <= 0))
 		return (NULL);
 	tmp = read_files(fd, backup);
 	if (!tmp)
 		return (NULL);
 	else if (!tmp[0])
-	{
-		free(tmp);
-		return (NULL);
-	}
+		return (free_str(tmp));
 	result = make_result(tmp);
 	if (!result)
-		return (NULL);
-	backup = mv_backup(tmp);
+		return (free_str(backup));
+	backup = mv_backup(tmp, &check);
+	if (!check)
+		return (free_str(backup));
 	return (result);
 }
