@@ -6,7 +6,7 @@
 /*   By: hyna <hyns@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 01:50:17 by hyna              #+#    #+#             */
-/*   Updated: 2022/03/11 18:30:58 by hyna             ###   ########.fr       */
+/*   Updated: 2022/03/11 21:17:39 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,6 @@ char	*get_next_line(int fd)
 		return (free_str(backup));
 	backup = mv_backup(tmp, &check);
 	if (!check)
-		return (free_str(backup));
+		return (free_str(result));
 	return (result);
 }
