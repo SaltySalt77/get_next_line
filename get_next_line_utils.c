@@ -6,7 +6,7 @@
 /*   By: hyna <hyns@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 23:41:43 by hyna              #+#    #+#             */
-/*   Updated: 2022/03/05 17:18:41 by hyna             ###   ########.fr       */
+/*   Updated: 2022/03/11 18:26:07 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,10 @@ size_t	ft_strlen(const char	*s)
 	while (s[len])
 		len++;
 	return (len);
+}
+
+char	*free_str(char	*s)
+{
+	free(s);
+	return (NULL);
 }
