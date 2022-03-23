@@ -6,11 +6,11 @@
 /*   By: hyna <hyns@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 01:36:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/03/24 01:36:56 by hyna             ###   ########.fr       */
+/*   Updated: 2022/03/24 02:06:45 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strchr(const char	*s, int c)
 {
@@ -34,4 +34,10 @@ size_t	ft_strlen(const char	*s)
 	while (s[len])
 		len++;
 	return (len);
+}
+
+char	*free_str(char	*s)
+{
+	free(s);
+	return (NULL);
 }

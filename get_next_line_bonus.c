@@ -6,11 +6,11 @@
 /*   By: hyna <hyns@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 01:36:19 by hyna              #+#    #+#             */
-/*   Updated: 2022/03/24 01:36:22 by hyna             ###   ########.fr       */
+/*   Updated: 2022/03/24 02:04:10 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*mv_backup(char	*backup, int	*check)
 {
@@ -118,7 +118,7 @@ static char	*read_files(int fd, char	*backup)
 
 char	*get_next_line(int fd)
 {
-	static char	*backup;
+	static char	*backup[OPEN_MAX];
 	char		*result;
 	char		*tmp;
 	int			check;
@@ -126,15 +126,15 @@ char	*get_next_line(int fd)
 	check = 1;
 	if ((fd < 0) || (BUFFER_SIZE <= 0))
 		return (NULL);
-	tmp = read_files(fd, backup);
+	tmp = read_files(fd, backup[fd]);
 	if (!tmp)
 		return (NULL);
 	else if (!tmp[0])
 		return (free_str(tmp));
 	result = make_result(tmp);
 	if (!result)
-		return (free_str(backup));
-	backup = mv_backup(tmp, &check);
+		return (free_str(backup[fd]));
+	backup[fd] = mv_backup(tmp, &check);
 	if (!check)
 		return (free_str(result));
 	return (result);
